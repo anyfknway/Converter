@@ -66,7 +66,7 @@
             if (tocNav) tocNav.remove();
 
             // Удаляем повторяющиеся заголовки, которые дублируют название раздела (с меньшим шрифтом)
-            const duplicateHeadings = Array.from(doc.querySelectorAll('h2, h3, h4'))
+            const duplicateHeadings = Array.from(doc.querySelectorAll('h1'))
                 .filter(el => el.textContent.trim().toLowerCase() === sectionTitle.toLowerCase());
             duplicateHeadings.forEach(el => el.remove());
 
@@ -115,7 +115,7 @@
                 fullContent += '</ul>'; // Завершение списка навигации
 
                 // Загружаем контент для каждого раздела
-                fullContent += `<h1 id="${section.id}">${section.name}</h1>`;
+                fullContent += `<h2 id="${section.id}">${section.name}</h2>`;
                 const content = await fetchContent(section.url); // Дожидаемся загрузки контента
                 const filteredContent = filterContent(content, section.name); // Фильтруем контент и добавляем стили
                 fullContent += `<div style="page-break-after: always;">${filteredContent}</div>`;
